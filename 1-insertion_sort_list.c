@@ -1,35 +1,35 @@
 #include "sort.h"
 
 /**
-* swap_nodes - swaps two nodes
+* swap_nodes - swamps two nodes
 * @list: linked list
-* @previousnode: first node
-* @currentnode: second node
+* @previnode: previous node
+* @currnode: current node
 */
-void swap_nodes(listint_t **list, listint_t *previousnode, listint_t *currentnode)
+void swap_nodes(listint_t **list, listint_t *previnode, listint_t *currnode)
 {
 	listint_t *prevA, *nextB;
 
-	if (previousnode == NULL || currentnode == NULL)
+	if (previnode == NULL || currnode == NULL)
 		return;
 
-	prevA = previousnode->prev;
-	nextB = currentnode->next;
+	prevA = previnode->prev;
+	nextB = currnode->next;
 
 
-	if (prevA)
-		prevA->next = currentnode;
+	if (prevA) /* check if node A is the head node */
+		prevA->next = currnode;
 
 	if (nextB)
-		nextB->prev = previousnode;
+		nextB->prev = previnode;
 
-	previousnode->next = nextB;
-	previousnode->prev = currentnode;
-	currentnode->next = previousnode;
-	currentnode->prev = prevA;
+	previnode->next = nextB;
+	previnode->prev = currnode;
+	currnode->next = previnode;
+	currnode->prev = prevA;
 
 	if (prevA == NULL)
-		*list = currentnode;
+		*list = currnode;
 }
 
 /**
